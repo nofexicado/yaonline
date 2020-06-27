@@ -45,7 +45,7 @@
             </div>
             <div>
                 <ul>
-                    @foreach ($dep_cat_commerces as $item) 
+                    @foreach ($commerio as $item) 
                     <li>{{$item->name}}</li>
                     @endforeach
                 </ul>

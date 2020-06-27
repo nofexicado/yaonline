@@ -24,27 +24,27 @@ class LandingPage extends Controller
 
 
         //proceso comercio a travez de departament.
-        $dep_cat_commerces=[]; 
+        // $dep_cat_commerces=[]; 
 
-        foreach(Departament::find(5)->categories as $dep_cat) {
-            $dep_cat_commerces = $dep_cat->commerces;
-        }
+        // foreach(Departament::find(5)->categories as $dep_cat) {
+        //     $dep_cat_commerces = $dep_cat->commerces;
+        // }
         
 
 
         //proceso consultas Scope.
         $commerio = Commerce::orderBy('id','DESC')
         ->commerce($commerce)
-        ->category($category)              
-        ->paginate(2);
-
+        ->category($category)
+        ->departament($departament);
+        
 
         //retorno datos a la vista.
       return view('home', [
         'categories' => $categories,
         'departaments' => $departaments,
         'commerio' => $commerio,
-        'dep_cat_commerces' => $dep_cat_commerces
+        // 'dep_cat_commerces' => $dep_cat_commerces
       ]);
 
     }
