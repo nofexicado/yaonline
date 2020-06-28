@@ -20,16 +20,15 @@
                             
                             
                             <select name="category" id="">
-                                <option value="null">Ninguno</option>
+                                <option value="">Ninguno</option>
                                 @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                {{-- <h1>{{dd($category->commerce) }}</h1> --}}
                                 @endforeach
                             </select> 
                             
                             
                             <select name="departament" id="">
-                                <option value="null">Ninguno</option>
+                                <option value="">Ninguno</option>
                                 @foreach ($departaments as $departament)
                                 <option value="{{ $departament->id }}" >{{ $departament->name }}</option>
                                 @endforeach
