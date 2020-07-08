@@ -16,11 +16,11 @@ class CreateCommercesTable extends Migration
         Schema::create('commerces', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('category_id')->unsigned();
+            $table->bigInteger('category_departament_id')->unsigned();
             
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_departament_id')->references('id')->on('category_departament');
         });
     }
 

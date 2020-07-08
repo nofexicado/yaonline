@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Busqueda de comercio</div>
                    
                 <div class="card-body">
                     @if (session('status'))
@@ -16,25 +16,25 @@
 
                         <form method="GET" action="{{ route('home') }}">
                             @csrf
-                            <input type="text" name="commerce" placeholder="Comercio">
+                            <input class="form-control" type="text" name="commerce" placeholder="Comercio" value="{{ old('commerce') }}">
                             
                             
-                            <select name="category" id="">
-                                <option value="">Ninguno</option>
+                            <select class="custom-select" name="category"  value="{{ old('category') }}">
+                                <option disabled selected>Selecciona una Categoría</option>
                                 @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" {{(old('category', $category->id ) == $category_name ? "selected" : "" )}}>{{ $category->name }}</option>
                                 @endforeach
                             </select> 
                             
                             
-                            <select name="departament" id="">
-                                <option value="">Ninguno</option>
+                            <select class="custom-select" name="departament" value="{{ old('departament') }}">
+                                <option disabled selected>Selecciona un Municipio</option>
                                 @foreach ($departaments as $departament)
-                                <option value="{{ $departament->id }}" >{{ $departament->name }}</option>
+                                <option value="{{ $departament->id }}" {{(old('departament', $departament->id ) == $departament_name ? "selected" : "" )}}>{{ $departament->name }}</option>
                                 @endforeach
                             </select>
 
-                            <button type="submit">Buscar</button>
+                            <button class="btn btn-success mt-2 float-right" type="submit" name="buscar">Buscar</button>
                             
                         </form>
 
@@ -43,11 +43,26 @@
                
             </div>
             <div>
-                <ul>
-                    @foreach ($commerio as $item) 
-                    <li>{{$item->name}}</li>
+                @if(isset($_GET['buscar']))
+                <table class="table table-dark mt-4">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($commerio as $item)
+                          <tr>
+                          <th scope="row">1</th>
+                        <td>{{ $item->name }}</td>
+                    </tr>
                     @endforeach
-                </ul>
+                    </tbody>
+                  </table>
+                  @else
+                    <h1>No se encontraron resultados</h1>
+                @endif
             </div>
         </div>
     </div>

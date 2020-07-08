@@ -8,12 +8,8 @@ use Illuminate\Support\Facades\App;
 
 class Commerce extends Model
 {
-    public function category(){
-        return $this->belongsTo(Category::class);
-    }
-
-    public function departament(){
-        return $this->hasOneThrough(Departament::class, Category::class);
+    public function category_departament(){
+        return $this->belongsTo(Category_departament::class);
     }
 
 
@@ -29,26 +25,24 @@ class Commerce extends Model
         
         if($category!='null')
 
-        return $query->where('category_id', 'LIKE', "%$category%");
+        return $query->where('category_departament_id', 'LIKE', "%$category%");
     }
 
     
 
     public function scopeDepartament($query, $departament){
 
-        
-
         if($departament){
         $dep_cat_commerces=[]; 
 
-        foreach(Departament::find($departament)->categories as $dep_cat) {
-            $dep_cat_commerces = $dep_cat->commerces;
-            foreach($dep_cat_commerces as $id){
-              $departament = $id->category_id;
-          }
-        } 
+        // foreach(Departament::find($departament)->categories as $dep_cat) {
+        //     $dep_cat_commerces = $dep_cat->commerces;
+        //     foreach($dep_cat_commerces as $id){
+        //       $departament = $id->category_id;
+        //   }
+        // } 
         
-        return $query->where('category_id', 'LIKE', "%$departament%");
+        return $query->where('category_departament_id', 'LIKE', "%$departament%");
     
 }
     }
