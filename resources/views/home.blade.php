@@ -47,14 +47,14 @@
                 <table class="table table-dark mt-4">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Nombre</th>
                       </tr>
                     </thead>
                     <tbody>
                         @foreach ($commerio as $item)
                           <tr>
-                          <th scope="row">1</th>
+                          <th scope="row">{{ $item->id }}</th>
                         <td>{{ $item->name }}</td>
                     </tr>
                     @endforeach

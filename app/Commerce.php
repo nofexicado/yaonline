@@ -5,6 +5,9 @@ namespace App;
 use Facade\Ignition\QueryRecorder\Query;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
+
 
 class Commerce extends Model
 {
@@ -21,32 +24,41 @@ class Commerce extends Model
         return $query->where('name', 'LIKE', "%$Commerce%");
     }
 
+
     public function scopeCategory($query,$category){
         
-        if($category!='null')
+       if($category !='null'){
+    
+        $cate = DB::table('category_departament')->where('category_id', $category )->pluck('id'); 
+            
+        $item = array();
 
-        return $query->where('category_departament_id', 'LIKE', "%$category%");
+                foreach($cate as $cat){
+                    $item[] = $cat;
+                }
+               
+                return $query->whereIn('category_departament_id',$item);
+            }
+               
     }
 
-    
 
     public function scopeDepartament($query, $departament){
 
-        if($departament){
-        $dep_cat_commerces=[]; 
-
-        // foreach(Departament::find($departament)->categories as $dep_cat) {
-        //     $dep_cat_commerces = $dep_cat->commerces;
-        //     foreach($dep_cat_commerces as $id){
-        //       $departament = $id->category_id;
-        //   }
-        // } 
+        if($departament !='null')
         
-        return $query->where('category_departament_id', 'LIKE', "%$departament%");
+        $depa = DB::table('category_departament')->where('departament_id', $departament )->pluck('id'); 
+            
+        $item = array();
+
+                foreach($depa as $dep){
+                    $item[] = $dep;
+                }
+               
+                return $query->whereIn('category_departament_id',$item);
     
-}
     }
-    
+
 }
 
 

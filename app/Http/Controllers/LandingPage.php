@@ -36,15 +36,11 @@ class LandingPage extends Controller
         ->category($category)
         ->departament($departament)
         ->paginate(10);
-      
-      
-        //retorno datos a la vista.
-      // return view('home', [
-      //   'categories' => $categories,
-      //   'departaments' => $departaments,
-      //   'commerio' => $commerio,
-      //   'category' => $category,
         
+        
+      // $conts=count($commerio);
+     
+      
     
       return view('home',compact('categories', 'departaments', 'commerio','category_name','departament_name' ));
     }

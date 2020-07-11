@@ -15,8 +15,8 @@ class CreateCategoryDepartamentTable extends Migration
     {
         Schema::create('category_departament', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('category_id')->unsigned();
-            $table->bigInteger('departament_id')->unsigned();
+            $table->bigInteger('category_id')->unsigned()->nullable();
+            $table->bigInteger('departament_id')->unsigned()->nullable();
             
             $table->timestamps();
 

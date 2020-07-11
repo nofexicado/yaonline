@@ -10,5 +10,10 @@ class Category_departament extends Model
 {
     public function commerces (){
         return $this->hasMany(Commerce::class);
-    }  
+    } 
+    
+  
+
+
+    
 }
