@@ -5,44 +5,33 @@ use App\Commerce;
 use App\Category;
 use App\Departament;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+
 
 class LandingPage extends Controller
 {
+  /*
+    *funcion para mostrar informacion basada en filtros
+    *@inputs(commerceInput, categoryInput, departamentInput)
+    *@outputs(categories, departaments, comercio)
+  */
     public function index(Request $request){
       
-        //consulto todos los datos de las tablas.
-        // $commerces = Commerce::all();
+        #Select queryData      
         $categories = Category::all();
         $departaments = Departament::all();
-        
-        //obtengo datos por GET desde la vista.
-        $commerce = $request->get('commerce');
-        $category = $request->get('category');
-        $departament = $request->get('departament');
-        $category_name = 0;
-        $departament_name = 0;
-
-        if(!empty($departament)){
-          $departament_name = Departament::find($departament)->id; 
-          
-        }
-
-        if(!empty($category)){
-          $category_name = Category::find($category)->id; 
-        }
-
-        $commerio = Commerce::orderBy('id','ASC')
-        ->commerce($commerce)
-        ->category($category)
-        ->departament($departament)
+        #Request viewData
+        $commerceInput = $request->get('commerce');
+        $categoryInput = $request->get('category');
+        $departamentInput = $request->get('departament');
+        #Query Result
+        $comercio = Commerce::orderBy('id','ASC')
+        ->commerce($commerceInput)
+        ->category($categoryInput)
+        ->departament($departamentInput)
         ->paginate(10);
         
-        
-      // $conts=count($commerio);
-     
-      
-    
-      return view('home',compact('categories', 'departaments', 'commerio','category_name','departament_name' ));
+      return view('home',compact('categories', 'departaments', 'comercio'));
     }
   
 }

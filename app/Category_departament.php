@@ -8,12 +8,10 @@ use Illuminate\Support\Facades\App;
 
 class Category_departament extends Model
 {
+    protected $table = 'category_departament';
+
     public function commerces (){
         return $this->hasMany(Commerce::class);
     } 
-    
-  
-
-
     
 }

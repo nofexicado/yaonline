@@ -22,7 +22,7 @@
                             <select class="custom-select" name="category"  value="{{ old('category') }}">
                                 <option disabled selected>Selecciona una Categoría</option>
                                 @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{(old('category', $category->id ) == $category_name ? "selected" : "" )}}>{{ $category->name }}</option>
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select> 
                             
@@ -30,7 +30,7 @@
                             <select class="custom-select" name="departament" value="{{ old('departament') }}">
                                 <option disabled selected>Selecciona un Municipio</option>
                                 @foreach ($departaments as $departament)
-                                <option value="{{ $departament->id }}" {{(old('departament', $departament->id ) == $departament_name ? "selected" : "" )}}>{{ $departament->name }}</option>
+                                <option value="{{ $departament->id }}">{{ $departament->name }}</option>
                                 @endforeach
                             </select>
 
@@ -43,7 +43,6 @@
                
             </div>
             <div>
-                @if(isset($_GET['buscar']))
                 <table class="table table-dark mt-4">
                     <thead>
                       <tr>
@@ -52,7 +51,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($commerio as $item)
+                        @foreach ($comercio as $item)
                           <tr>
                           <th scope="row">{{ $item->id }}</th>
                         <td>{{ $item->name }}</td>
@@ -60,9 +59,6 @@
                     @endforeach
                     </tbody>
                   </table>
-                  @else
-                    <h1>No se encontraron resultados</h1>
-                @endif
             </div>
         </div>
     </div>
